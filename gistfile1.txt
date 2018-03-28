@@ -1,0 +1,61 @@
+#include <iostream>
+#include <string>
+#include <stack>
+#include <queue>
+#include <array>
+
+using namespace std;
+
+int main()
+{
+	stack<string> first;
+	stack<string> second;
+	stack<string> third;
+	queue<string> final;
+	string whatever;
+
+	cout << "Enter a sentence and end it with a space and a !" << endl;
+	cin >> whatever;
+
+	while (whatever != "!")
+	{
+		first.push(whatever);
+		cin >> whatever;
+	}
+
+	third.push("!");
+	second.push(",");
+
+	for (int i = first.size(); i>2; i--)
+	{
+		second.push(first.top());
+		first.pop();
+	}
+
+	for (int i = first.size(); i>0; i--)
+	{
+		third.push(first.top());
+		first.pop();
+	}
+
+	for (int i = second.size(); i>0; i--)
+	{
+		final.push(second.top());
+		second.pop();
+	}
+
+	for (int i = third.size(); i>0; i--)
+	{
+		final.push(third.top());
+		third.pop();
+	}
+
+	for (int i = final.size(); i>0; i--)
+	{
+		cout << final.front() << " ";
+		final.pop();
+	}
+
+	system("PAUSE");
+	return 0;
+}
